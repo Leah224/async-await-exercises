@@ -32,3 +32,40 @@ fetch("https://deckofcardsapi.com/api/deck/new/shuffle/")
       });
   })
   .catch(err => console.error(err));
+
+// interactive HTML page
+
+let deckId = null;
+
+// Create a new shuffled deck when page loads
+fetch("https://deckofcardsapi.com/api/deck/new/shuffle/")
+  .then(res => res.json())
+  .then(data => {
+    deckId = data.deck_id;
+    console.log("Step 3: New deck ready:", deckId);
+  })
+  .catch(err => console.error(err));
+
+// Button event to draw cards
+document.getElementById("draw-card").addEventListener("click", () => {
+  if (!deckId) return; // deck not ready yet
+
+  fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.remaining === 0) {
+        alert("No more cards left!");
+      }
+
+      const card = data.cards[0];
+      console.log("Step 3 (Drawn):", `${card.value} of ${card.suit}`);
+
+      // Display card image
+      const img = document.createElement("img");
+      img.src = card.image;
+      img.alt = `${card.value} of ${card.suit}`;
+      document.getElementById("card-container").appendChild(img);
+    })
+    .catch(err => console.error(err));
+});
+  
