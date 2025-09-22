@@ -1,0 +1,49 @@
+body {
+    background-color:#006400; ;
+}
+
+#game-title {
+    color:rgb(226, 243, 230);
+}
+
+/* Container for cards */
+#card-container {
+  position: relative;   
+  width: 400px;         
+  height: 500px;        /* enough space to see stacked cards */
+  margin-top: 20px;
+}
+
+/* All drawn card images */
+#card-container img {
+  position: absolute;   /* stack cards on top of each other */
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease; /* smooth effect when placed */
+  border-radius: 8px;  
+  box-shadow: 2px 4px 8px rgba(0,0,0,0.3); /* shadow for depth */
+}
+
+
+
+/*Button Styling*/
+#draw-card {
+    background-color: #4b794b;
+    color: rgb(226, 243, 230);                
+    font-size: 18px;             
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 2px 4px 6px rgba(0,0,0,0.3); /* shadow for depth */
+    transition: background-color 0.2s ease, transform 0.1s ease;
+
+}
+
+#draw-card:hover {
+    background-color: #5f7c5f;
+}
+
+#draw-card:active {
+    transform: scale(0.95);
+}
