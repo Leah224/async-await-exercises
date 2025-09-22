@@ -64,7 +64,13 @@ document.getElementById("draw-card").addEventListener("click", () => {
       const img = document.createElement("img");
       img.src = card.image;
       img.alt = `${card.value} of ${card.suit}`;
-      document.getElementById("card-container").appendChild(img);
+      // figure out how many cards are already in the container
+      const container = document.getElementById("card-container");
+      const offset = container.children.length * 20; // 20px shift per card
+      img.style.top = `${offset}px`;
+      img.style.left = `${offset}px`;
+
+      container.appendChild(img);
     })
     .catch(err => console.error(err));
 });
